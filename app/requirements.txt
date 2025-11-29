@@ -4,3 +4,5 @@ SQLAlchemy
 pydantic
 requests
 python-dotenv
+PyPDF2
+
