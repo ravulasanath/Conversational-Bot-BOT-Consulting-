@@ -2,13 +2,13 @@
 import os
 from typing import List, Literal
 
-import requests
 from dotenv import load_dotenv
+import requests
 
 load_dotenv()
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
+print("GROQ_API_KEY:", GROQ_API_KEY)
 # type alias
 Role = Literal["system", "user", "assistant"]
 
@@ -21,8 +21,8 @@ def call_llm(messages: List[dict]) -> str:
     """
 
     # Fallback fake response if no API key (useful for local testing)
-    if not GROQ_API_KEY:
-        return "This is a dummy LLM response. Configure GROQ_API_KEY to get real answers."
+    # if not GROQ_API_KEY:
+    #     return "This is a dummy LLM response. Configure GROQ_API_KEY to get real answers."
 
     url = "https://api.groq.com/openai/v1/chat/completions"
 
