@@ -1,4 +1,3 @@
-# app/routers/conversations.py
 
 from typing import List
 
@@ -31,9 +30,7 @@ MAX_HISTORY_MESSAGES = 10  # sliding window size
 UPLOAD_DIR = "uploaded_docs"
 
 
-# -------------------------------------------------------------------
 # Helper functions
-# -------------------------------------------------------------------
 
 
 def get_or_create_user(db: Session, user_id: int) -> models.User:
@@ -46,8 +43,7 @@ def get_or_create_user(db: Session, user_id: int) -> models.User:
     if user:
         return user
 
-    # NOTE: This is not typical (we don't normally set id manually),
-    # but it's OK for a simple case study.
+    
     user = models.User(id=user_id, name=f"user-{user_id}")
     db.add(user)
     db.commit()
@@ -64,7 +60,7 @@ def build_llm_history(messages: List[models.Message]) -> List[dict]:
     return [{"role": m.role, "content": m.content} for m in last]
 
 
-# ---- RAG helpers ----------------------------------------------------
+# RAG helpers 
 
 
 def chunk_text(text: str, max_chars: int = 800, overlap: int = 200) -> List[str]:
@@ -167,9 +163,9 @@ def build_rag_prompt(context_chunks: List[str], user_message: str) -> List[dict]
     ]
 
 
-# -------------------------------------------------------------------
+
 # API endpoints
-# -------------------------------------------------------------------
+
 
 
 @router.post(

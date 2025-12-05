@@ -1,4 +1,4 @@
-# app/llm_client.py
+
 import os
 from typing import List, Literal
 
@@ -21,8 +21,8 @@ def call_llm(messages: List[dict]) -> str:
     """
 
     # Fallback fake response if no API key (useful for local testing)
-    # if not GROQ_API_KEY:
-    #     return "This is a dummy LLM response. Configure GROQ_API_KEY to get real answers."
+    if not GROQ_API_KEY:
+        return "This is a dummy LLM response. Configure GROQ_API_KEY to get real answers."
 
     url = "https://api.groq.com/openai/v1/chat/completions"
 
